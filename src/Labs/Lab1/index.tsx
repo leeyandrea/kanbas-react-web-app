@@ -7,12 +7,10 @@ export default function Lab1() {
           <h4>Heading Tags</h4>
             Text documents are often broken up into several sections and subsections. Each section is usually prefaced with a short title or 
             heading that attempts to summarize the topic of the section it precedes. For instance this paragraph is preceded by the heading Heading Tags. The font of the section headings are usually larger and bolder than their subsection headings. This document uses headings to introduce topics such as HTML Documents, HTML Tags, Heading Tags, etc. HTML heading tags can be used to format plain text so that it renders in a browser as large headings. There are 6 heading tags for different sizes: h1, h2, h3, h4, h5, and h6. Tag h1 is the largest heading and h6 is the smallest heading.
-            <h4>
             <div id="wd-p-tag">
               <h4>Paragraph Tag</h4>
                 <p id="wd-p-1">
-                  This is a paragraph. We often separate a long set of sentences with vertical spaces to make the text easier to read. Browsers ignore vertical white spaces and render all the text as one single set of sentences. To force the browser to add vertical spacing, wrap the paragraphs you want to separate with the paragraph tag
-        </p>
+                  This is a paragraph. We often separate a long set of sentences with vertical spaces to make the text easier to read. Browsers ignore vertical white spaces and render all the text as one single set of sentences. To force the browser to add vertical spacing, wrap the paragraphs you want to separate with the paragraph tag</p>
         <p id="wd-p-2">
                 This is the first paragraph. The paragraph tag is used to format
                 vertical gaps between long pieces of text like this one.
@@ -30,7 +28,6 @@ export default function Lab1() {
               </div>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-            </h4>
             <div id="wd-lists">
         <h4>List Tags</h4>
         <h5>Ordered List Tag</h5>
@@ -45,12 +42,12 @@ export default function Lab1() {
             <li>Flip and cook the other side.</li>
             <li>Serve and enjoy!</li>
         </ol>
-        My favorite recipe: Savory Egg Pudding
+        My favorite recipe: 
   <ol id="wd-your-favorite-recipe">
-    <li>Crack 2 eggs in a bowl and whisk together</li>
-    <li>add 1 tbsp soy sauce, 1 tbsp sesame oil, and 1 tbsp warm water</li>
-    <li>cover the bowl with a plate and microwave for 2 minutes</li>
-    <li>enjoy an easy egg breakfast</li>
+    <li>Crack 2 eggs in a bowl and whisk together.</li>
+    <li>add 1 tbsp soy sauce, 1 tbsp sesame oil, and 1 tbsp warm water.</li>
+    <li>cover the bowl with a plate and microwave for 2 minutes.</li>
+    <li>enjoy an easy savory egg pudding for breakfast.</li>
   </ol>
   <h5>Unordered List Tag</h5>
 My favorite books (in no particular order)
