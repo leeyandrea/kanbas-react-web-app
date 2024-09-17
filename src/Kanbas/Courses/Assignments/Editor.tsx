@@ -47,21 +47,27 @@ export default function AssignmentEditor() {
           </td>
         </tr>
         <tr>
-            <td align="right" valign="top">
-                <label>Online Entry Options:</label><br/>
+            <td align="justify" valign="top">
+                <div>
+                    <label>Online Entry Options:</label><br/>
 
-                <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/>
-                <label htmlFor="wd-chkbox-comedy">Comedy</label><br/>
+                    <input type="checkbox" name="check-entry" id="wd-text-entry"/>
+                    <label htmlFor="wd-text-entry">Text Entry</label><br/>
 
-                <input type="checkbox" name="check-genre" id="wd-chkbox-drama"/>
-                <label htmlFor="wd-chkbox-drama">Drama</label><br/>
+                    <input type="checkbox" name="check-entry" id="wd-website-url"/>
+                    <label htmlFor="wd-website-url	">Website URL</label><br/>
 
-                <input type="checkbox" name="check-genre" id="wd-chkbox-scifi"/>
-                <label htmlFor="wd-chkbox-scifi">Science Fiction</label><br/>
+                    <input type="checkbox" name="check-entry" id="wd-media-recordings"/>
+                    <label htmlFor="wd-media-recordings">Media Recordings</label><br/>
 
-                <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/>
-                <label htmlFor="wd-chkbox-fantasy">Fantasy</label>  
-            </td>
+                    <input type="checkbox" name="check-entry" id="wd-student-annotationy"/>
+                    <label htmlFor="wd-student-annotation">Student Annotations</label>
+
+                    <input type="checkbox" name="check-entry" id="wd-file-upload"/>
+                    <label htmlFor="wd-file-upload">File Uploads</label>
+                </div>
+
+            </td> 
         </tr>
       </table>
     </div>
