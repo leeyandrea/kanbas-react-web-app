@@ -137,7 +137,7 @@ export default function AssignmentEditor() {
                     value="05/20/2024"/>
             </td>
         </tr>
-      </table>
+    </table>
     <hr />
     <table align="right">
         <tr>

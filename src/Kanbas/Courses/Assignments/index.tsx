@@ -1,8 +1,7 @@
 export default function Assignments() {
   return (
     <div id="wd-assignments">
-      <input id="wd-search-assignment"
-             placeholder="Search for Assignments" />
+      <input id="wd-search-assignment" placeholder="Search for Assignments" />
       <button id="wd-add-assignment-group">+ Group</button>
       <button id="wd-add-assignment">+ Assignment</button>
       <h3 id="wd-assignments-title">
@@ -15,10 +14,10 @@ export default function Assignments() {
             A1 - ENV + HTML
           </a><br />
           <ul className="wd-assignment-list-item">
-          Multiple Modules | <b>Not avaliable until</b> May 6 at 12:00am |
+            Multiple Modules | <b>Not avaliable until</b> May 6 at 12:00am |
           </ul>
           <ul className="wd-assignment-list-item">
-          <b>Due</b> May 13 at 11:59pm | 100pts
+            <b>Due</b> May 13 at 11:59pm | 100pts
           </ul>
         </li>
         <li className="wd-assignment-list-item">
@@ -27,10 +26,10 @@ export default function Assignments() {
             A1 - CSS + BOOTSTRAP
           </a><br />
           <ul className="wd-assignment-list-item">
-          Multiple Modules | <b>Not avaliable until</b> May 13 at 12:00am |
+            Multiple Modules | <b>Not avaliable until</b> May 13 at 12:00am |
           </ul>
           <ul className="wd-assignment-list-item">
-          <b>Due</b> May 20 at 11:59pm | 100pts
+            <b>Due</b> May 20 at 11:59pm | 100pts
           </ul>
         </li>
         <li className="wd-assignment-list-item">
@@ -39,10 +38,10 @@ export default function Assignments() {
             A3 - JAVASCRIPT + REACT
           </a><br />
           <ul className="wd-assignment-list-item">
-          Multiple Modules | <b>Not avaliable until</b> May 20 at 12:00am |
+            Multiple Modules | <b>Not avaliable until</b> May 20 at 12:00am |
           </ul>
           <ul className="wd-assignment-list-item">
-          <b>Due</b> May 27 at 11:59pm | 100pts
+            <b>Due</b> May 27 at 11:59pm | 100pts
           </ul>
         </li>
       </ul>
