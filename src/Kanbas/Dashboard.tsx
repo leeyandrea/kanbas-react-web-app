@@ -8,8 +8,10 @@ export default function Dashboard() {
         <div className="wd-dashboard-course">
           <img src="/images/reactjs.webp" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
               CS1234 React JS
             </Link>
             <p className="wd-dashboard-course-title">
@@ -18,11 +20,13 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/Typography.png" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
               ARTD 3350 Typography 2
             </Link>
             <p className="wd-dashboard-course-title">
@@ -31,12 +35,14 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/algorithms.jpg" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              CS 3000 Algorithms & Data 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              CS 3000 Algorithms & Data
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer
@@ -44,12 +50,14 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/dpseminar.png" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              ARTD 1002 Seminar for Design Perpectives 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              ARTD 1002 Seminar for Design Perpectives
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer
@@ -57,12 +65,14 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/algoRecitation.jpg" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              CS 3001 Recitation for CS 3000 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              CS 3001 Recitation for CS 3000
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer
@@ -70,12 +80,14 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/webdev.jpg" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              CS 4550 Web Development 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              CS 4550 Web Development
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer
@@ -83,12 +95,14 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/dp.jpg" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              ARTD 1001 Design Perspectives 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              ARTD 1001 Design Perspectives
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer
@@ -96,12 +110,15 @@ export default function Dashboard() {
             <Link to="/Kanbas/Courses/1234/Home"> Go </Link>
           </div>
         </div>
-        <div className="wd-dashboard-course"> 
+        <div className="wd-dashboard-course">
           <img src="/images/productDesign.jpg" width={200} />
           <div>
-            <Link className="wd-dashboard-course-link"
-              to="/Kanbas/Courses/1234/Home">
-              GE 4892 Engineering Product Design and Prototyping Challenge Project 
+            <Link
+              className="wd-dashboard-course-link"
+              to="/Kanbas/Courses/1234/Home"
+            >
+              GE 4892 Engineering Product Design and Prototyping Challenge
+              Project
             </Link>
             <p className="wd-dashboard-course-title">
               Full Stack software developer

@@ -9,10 +9,13 @@ export default function Assignments() {
       </h3>
       <ul id="wd-assignment-list">
         <li className="wd-assignment-list-item">
-          <a className="wd-assignment-link"
-            href="#/Kanbas/Courses/1234/Assignments/123">
+          <a
+            className="wd-assignment-link"
+            href="#/Kanbas/Courses/1234/Assignments/123"
+          >
             A1 - ENV + HTML
-          </a><br />
+          </a>
+          <br />
           <ul className="wd-assignment-list-item">
             Multiple Modules | <b>Not avaliable until</b> May 6 at 12:00am |
           </ul>
@@ -21,10 +24,13 @@ export default function Assignments() {
           </ul>
         </li>
         <li className="wd-assignment-list-item">
-          <a className="wd-assignment-link"
-            href="#/Kanbas/Courses/1234/Assignments/123">
+          <a
+            className="wd-assignment-link"
+            href="#/Kanbas/Courses/1234/Assignments/123"
+          >
             A1 - CSS + BOOTSTRAP
-          </a><br />
+          </a>
+          <br />
           <ul className="wd-assignment-list-item">
             Multiple Modules | <b>Not avaliable until</b> May 13 at 12:00am |
           </ul>
@@ -33,10 +39,13 @@ export default function Assignments() {
           </ul>
         </li>
         <li className="wd-assignment-list-item">
-          <a className="wd-assignment-link"
-            href="#/Kanbas/Courses/1234/Assignments/123">
+          <a
+            className="wd-assignment-link"
+            href="#/Kanbas/Courses/1234/Assignments/123"
+          >
             A3 - JAVASCRIPT + REACT
-          </a><br />
+          </a>
+          <br />
           <ul className="wd-assignment-list-item">
             Multiple Modules | <b>Not avaliable until</b> May 20 at 12:00am |
           </ul>
@@ -46,4 +55,5 @@ export default function Assignments() {
         </li>
       </ul>
     </div>
-);}
+  );
+}

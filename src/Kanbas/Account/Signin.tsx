@@ -5,12 +5,13 @@ export default function Signin() {
       <h3>Sign in</h3>
       <input id="wd-username" placeholder="username" /> <br />
       <input id="wd-password" placeholder="password" type="password" /> <br />
-      <Link  id="wd-signin-btn" to="/Kanbas/Dashboard"> 
+      <Link id="wd-signin-btn" to="/Kanbas/Dashboard">
         Sign in
-      </Link> 
+      </Link>
       <br />
-      <Link  id="wd-signup-link" to="/Kanbas/Account/Signup">
+      <Link id="wd-signup-link" to="/Kanbas/Account/Signup">
         Sign up
       </Link>
     </div>
-);}
+  );
+}
