@@ -3,7 +3,9 @@ export default function Modules() {
     <div>
       <button>Collapse All</button> <button>View Progress</button>
         <select id="wd-role">
-        <option value="USER">Publish All</option></select><button>+ Module</button>
+          <option value="USER">Publish All</option>
+        </select>
+      <button>+ Module</button>
       <ul id="wd-modules">
         <li className="wd-module">
           <div className="wd-title">Week 1, Lecture 1 - Course Introduction, Syllabus, Agenda</div>
@@ -14,7 +16,7 @@ export default function Modules() {
                 <li className="wd-content-item">Introduction to the course</li>
                 <li className="wd-content-item">Learn what is Web Development</li>
               </ul>
-              </li>
+            </li>
             <li>
               <span className="wd-title">READING</span>
               <ul className="wd-content">
