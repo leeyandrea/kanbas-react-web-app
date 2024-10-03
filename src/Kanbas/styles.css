@@ -37,3 +37,29 @@ body * {
 .wd-lesson {
     border-left: 3px solid green !important;
 }
+
+.wd-assignment-list-item {
+    font-size: 15px;
+}
+
+.rounded-box {
+    font-size: 15px;
+    border: 1px solid gray;
+    border-radius: 20px;
+}
+
+a:link {
+    color: #000;
+}
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #000;
+}
+
+a:active {
+    color: #000;
+}

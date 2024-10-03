@@ -10,7 +10,7 @@ import PeopleTable from "./Assignments/People/Table";
 export default function Courses() {
   return (
     <div id="wd-courses">
-      <h2 className="text-danger">
+      <h2 className="text-active">
         <FaAlignJustify className="me-4 fs-4 mb-1" />
         Course 1234
       </h2>
