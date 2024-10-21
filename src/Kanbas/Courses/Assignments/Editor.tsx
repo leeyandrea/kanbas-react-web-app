@@ -1,4 +1,11 @@
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import * as db from "../../Database";
+
 export default function AssignmentEditor() {
+  const { courseId, assignmentId } = useParams();
+  const assignments = db.assignments;
+
   return (
     <div id="wd-assignments-editor" className="container mt-4">
       <form>
