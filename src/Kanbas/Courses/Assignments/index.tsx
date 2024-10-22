@@ -10,6 +10,7 @@ import * as db from "../../Database";
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments;
+
   return (
     <div id="wd-assignments">
       <AssignmentControls />
@@ -25,7 +26,7 @@ export default function Assignments() {
           <ul className="wd-lessons list-group rounded-0">
             {assignments
               .filter((assignment: any) => assignment.course === cid)
-              .map((assignment) => (
+              .map((assignment: any) => (
                 <li
                   key={assignment._id}
                   className="wd-lesson list-group-item d-flex align-items-center"
