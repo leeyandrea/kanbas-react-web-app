@@ -10,7 +10,7 @@ export default function TodoList() {
       <ul className="list-group">
         <TodoForm />
         {todos.map((todo: any) => (
-          <TodoItem todo={todo} />
+          <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
       <hr />

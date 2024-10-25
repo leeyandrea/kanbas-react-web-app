@@ -1,10 +1,48 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as db from "./Database";
 export default function Dashboard() {
-  const courses = db.courses;
+  const [courses, setCourses] = useState<any[]>(db.courses);
+  const [course, setCourse] = useState<any>({
+    _id: "0",
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+    image: "/images/reactjs.jpg",
+    description: "New Description",
+  });
+  const addNewCourse = () => {
+    const newCourse = { ...course, _id: new Date().getTime().toString() };
+    setCourses([...courses, { ...course, ...newCourse }]);
+  };
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <h5>
+        New Course
+        <button
+          className="btn btn-primary float-end"
+          id="wd-add-new-course-click"
+          onClick={addNewCourse}
+        >
+          {" "}
+          Add{" "}
+        </button>
+      </h5>
+      <br />
+      <input
+        defaultValue={course.name}
+        className="form-control mb-2"
+        onChange={(e) => setCourse({ ...course, name: e.target.value })}
+      />
+      <textarea
+        defaultValue={course.description}
+        className="form-control"
+        onChange={(e) => setCourse({ ...course, description: e.target.value })}
+      />
+      <hr />
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses" className="row">
@@ -12,7 +50,7 @@ export default function Dashboard() {
           {courses.map((course) => (
             <div className="wd-dashboard-course col" style={{ width: "300px" }}>
               <div className="card rounded-3 overflow-hidden">
-                <img src="/images/reactjs.webp" width="100%" height={160} />
+                <img src={course.image} width="100%" height={160} />
                 <div>
                   <Link
                     className="wd-dashboard-course-link text-decoration-none text-dark"
@@ -35,155 +73,6 @@ export default function Dashboard() {
               </div>
             </div>
           ))}
-
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/Typography.png" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      ARTD 3350 Typography 2
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Type 2
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/algorithms.jpg" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      CS 3000 Algorithms & Data
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Algorithms
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/dpseminar.png" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      ARTD 1002 Seminar for Design Perpectives
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Design
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/algoRecitation.jpg" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      CS 3001 Recitation for CS 3000
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Recitation
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/webdev.jpg" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      CS 4550 Web Development
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Web Dev
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/dp.jpg" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      ARTD 1001 Design Perspectives
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Design
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card rounded-3 overflow-hidden">
-              <img src="/images/productDesign.jpg" width="100%" height={160} />
-              <div>
-                <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  to="/Kanbas/Courses/1234/Home"
-                >
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      GE 4892 Engineering Product Design and Prototyping
-                      Challenge Project
-                    </h5>
-                    <p className="wd-dashboard-course-title card-text">
-                      Project
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
