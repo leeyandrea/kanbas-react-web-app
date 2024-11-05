@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import * as db from "../../Database";
 
-export default function AssignmentEditor() {
+export default function Editor() {
   const { aid } = useParams();
   const { cid } = useParams();
 

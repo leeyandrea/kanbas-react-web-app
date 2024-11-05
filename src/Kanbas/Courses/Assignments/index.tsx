@@ -5,15 +5,17 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentControls from "./AssignmentControls";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "react-router";
-import * as db from "../../Database";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
 
   return (
     <div id="wd-assignments">
-      <AssignmentControls />
+      {isFaculty && <AssignmentControls />}
       <br />
       <ul id="wd-assignments" className="list-group rounded-0">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
@@ -21,7 +23,7 @@ export default function Assignments() {
             <BsGripVertical className="me-2 fs-3" />
             <IoMdArrowDropdown className="me-2 fs-3" />
             ASSIGNMENTS
-            <AssignmentControlButtons />
+            {isFaculty && <AssignmentControlButtons />}
           </div>
           <ul className="wd-lessons list-group rounded-0">
             {assignments

@@ -20,7 +20,7 @@ export default function Lab4() {
   }
 
   return (
-    <div id="wd-lab3">
+    <div id="wd-lab">
       <h3>Lab 4 - STATE+REDUX </h3>
       <ClickEvent />
       <PassingDataOnEvent />
