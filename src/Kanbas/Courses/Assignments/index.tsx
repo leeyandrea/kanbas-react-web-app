@@ -6,6 +6,8 @@ import AssignmentControls from "./AssignmentControls";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import AssignmentLessonControlButtons from "./AssignmentLessonControlButtons";
+import DeleteAssignmentDialog from "./DeleteAssignment";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -54,12 +56,17 @@ export default function Assignments() {
                       </div>
                     </div>
                   </div>
-                  <LessonControlButtons />
+                  {isFaculty && (
+                    <AssignmentLessonControlButtons
+                      assignmentId={assignment._id}
+                    />
+                  )}
                 </li>
               ))}
           </ul>
         </li>
       </ul>
+      <DeleteAssignmentDialog />
     </div>
   );
 }

@@ -1,34 +1,38 @@
-export default function DeleteAssignment({
-  assignmentTitle,
-  deleteAssignment,
-}: {
-  assignmentTitle: string;
-  deleteAssignment: () => void;
-}) {
+import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteAssignment } from "./reducer";
+
+const DeleteAssignmentDialog = () => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    const modal = document.getElementById("wd-delete-assignment-dialog");
+    const assignmentId = modal?.getAttribute("data-assignment-id");
+    if (assignmentId) {
+      dispatch(deleteAssignment(assignmentId));
+    }
+  };
+
   return (
     <div
-      id="wd-delete-assignment-dialog"
       className="modal fade"
+      id="wd-delete-assignment-dialog"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="staticBackdropLabel">
-              Delete Assignment
-            </h1>
+            <h1 className="modal-title fs-5">Delete Assignment</h1>
             <button
               type="button"
               className="btn-close"
               data-bs-dismiss="modal"
+              aria-label="Close"
             ></button>
           </div>
           <div className="modal-body">
-            <p>
-              Are you sure you want to delete the assignment "{assignmentTitle}
-              "?
-            </p>
+            Are you sure you want to remove this assignment?
           </div>
           <div className="modal-footer">
             <button
@@ -36,19 +40,21 @@ export default function DeleteAssignment({
               className="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Cancel
+              No
             </button>
             <button
-              onClick={deleteAssignment}
               type="button"
-              data-bs-dismiss="modal"
               className="btn btn-danger"
+              data-bs-dismiss="modal"
+              onClick={handleDelete}
             >
-              Delete
+              Yes
             </button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default DeleteAssignmentDialog;
