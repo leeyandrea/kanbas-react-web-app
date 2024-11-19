@@ -18,10 +18,11 @@ const enrollmentSlice = createSlice({
             state.enrollments = [...state.enrollments, newEnrollment] as any;
         },
 
-        deleteEnrollment: (state, { payload: enrollmentId }) => {
+        deleteEnrollment: (state, action) => {
             state.enrollments = state.enrollments.filter(
-                (e: any) => e.id !== enrollmentId);
-        }
+                (enrollment) => enrollment._id !== action.payload
+            );
+        },
     },
 });
 export const { createEnrollment, deleteEnrollment } = enrollmentSlice.actions;
