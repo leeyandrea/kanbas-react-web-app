@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import EnrollmentOptions from "./DashboardTools/EnrollmentOptions";
-import * as db from "./Database";
+// import * as db from "./Database";
 
 export default function Dashboard({
   courses,
@@ -21,7 +21,7 @@ export default function Dashboard({
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
-  const { enrollments } = db;
+  // const { enrollments } = db;
   const [enrollment, setEnrollment] = useState(false);
   return (
     <div id="wd-dashboard">
@@ -79,68 +79,60 @@ export default function Dashboard({
       {!enrollment && (
         <div id="wd-dashboard-courses" className="row">
           <div className="row row-cols-1 row-cols-md-5 g-4">
-            {courses
-              .filter((course) =>
-                enrollments.some(
-                  (enrollment) =>
-                    enrollment.user === currentUser._id &&
-                    enrollment.course === course._id
-                )
-              )
-              .map((course) => (
-                <div
-                  key={course._id}
-                  className="wd-dashboard-course col"
-                  style={{ width: "300px" }}
-                >
-                  <div className="card rounded-3 overflow-hidden">
-                    <img src={course.image} width="100%" height={160} />
-                    <div>
-                      <Link
-                        className="wd-dashboard-course-link text-decoration-none text-dark"
-                        to={`/Kanbas/Courses/${course._id}/Home`}
-                      >
-                        <div className="card-body">
-                          <h5 className="wd-dashboard-course-title card-title">
-                            {course.name}
-                          </h5>
-                          <p
-                            className="wd-dashboard-course-title card-text overflow-y-hidden"
-                            style={{ maxHeight: 100 }}
-                          >
-                            {course.description}
-                          </p>
-                          <button className="btn btn-primary"> Go </button>
-                          {isFaculty && (
-                            <>
-                              <button
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  deleteCourse(course._id);
-                                }}
-                                className="btn btn-danger float-end"
-                                id="wd-delete-course-click"
-                              >
-                                Delete
-                              </button>
-                              <button
-                                id="wd-edit-course-click"
-                                onClick={(event) => {
-                                  event.preventDefault();
-                                  setCourse(course);
-                                }}
-                                className="btn btn-warning me-2 float-end"
-                              >
-                                Edit
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </Link>
-                    </div>
+            {courses.map((course) => (
+              <div
+                key={course._id}
+                className="wd-dashboard-course col"
+                style={{ width: "300px" }}
+              >
+                <div className="card rounded-3 overflow-hidden">
+                  <img src={course.image} width="100%" height={160} />
+                  <div>
+                    <Link
+                      className="wd-dashboard-course-link text-decoration-none text-dark"
+                      to={`/Kanbas/Courses/${course._id}/Home`}
+                    >
+                      <div className="card-body">
+                        <h5 className="wd-dashboard-course-title card-title">
+                          {course.name}
+                        </h5>
+                        <p
+                          className="wd-dashboard-course-title card-text overflow-y-hidden"
+                          style={{ maxHeight: 100 }}
+                        >
+                          {course.description}
+                        </p>
+                        <button className="btn btn-primary"> Go </button>
+                        {isFaculty && (
+                          <>
+                            <button
+                              onClick={(event) => {
+                                event.preventDefault();
+                                deleteCourse(course._id);
+                              }}
+                              className="btn btn-danger float-end"
+                              id="wd-delete-course-click"
+                            >
+                              Delete
+                            </button>
+                            <button
+                              id="wd-edit-course-click"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setCourse(course);
+                              }}
+                              className="btn btn-warning me-2 float-end"
+                            >
+                              Edit
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </Link>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
         </div>
       )}
