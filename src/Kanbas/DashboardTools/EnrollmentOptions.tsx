@@ -3,14 +3,11 @@ import * as db from "../Database";
 import { useSelector, useDispatch } from "react-redux";
 import * as enrollmentsClient from "./client";
 import { useEffect, useState } from "react";
-import { addEnrollment, removeEnrollment } from "./reducer";
+import { setEnrollments, addEnrollment, removeEnrollment } from "./reducer";
 
-export default function Enrollments({}: {
-  // addNewCourse: () => void;
-  // deleteCourse: (course: any) => void;
-}) {
+export default function Enrollments({}: {}) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
+  const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
   const dispatch = useDispatch();
   const courses = db.courses;
   // const [enrollments, setEnrollments] = useState(db.enrollments);
