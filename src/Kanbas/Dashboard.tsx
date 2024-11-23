@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import EnrollmentOptions from "./DashboardTools/EnrollmentOptions";
-import * as db from "./Database";
+// import * as db from "./Database";
 
 export default function Dashboard({
   courses,
@@ -20,33 +20,9 @@ export default function Dashboard({
   updateCourse: () => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const isFaculty = currentUser?.role === "FACULTY";
-  const [displayedCourses, setDisplayedCourses] = useState<any[]>([]);
+  // const { enrollments } = db;
   const [enrollment, setEnrollment] = useState(false);
-
-  const enrolledCourses = courses.filter((course) =>
-    enrollments.some(
-      (enrollment: any) =>
-        enrollment.user === currentUser._id && enrollment.course === course._id
-    )
-  );
-
-  // const displayedCourses = enrollment ? courses : enrolledCourses;
-
-  useEffect(() => {
-    const enrolledCourses = enrollment
-      ? courses
-      : courses.filter((course) =>
-          enrollments.some(
-            (enrollment: any) =>
-              enrollment.user === currentUser._id &&
-              enrollment.course === course._id
-          )
-        );
-    setDisplayedCourses(enrolledCourses);
-  }, [enrollments, courses, enrollment]);
-
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -93,16 +69,17 @@ export default function Dashboard({
             id="wd-add-new-course-click"
             onClick={(e) => setEnrollment(!enrollment)}
           >
-            {enrollment ? "My Courses" : "Enrollment"}
+            {" "}
+            Enrollment{" "}
           </button>
         </h5>
       )}
-      <h2>Published Courses ({displayedCourses.length})</h2>
+      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
-      {!enrollment ? (
+      {!enrollment && (
         <div id="wd-dashboard-courses" className="row">
           <div className="row row-cols-1 row-cols-md-5 g-4">
-            {displayedCourses.map((course) => (
+            {courses.map((course) => (
               <div
                 key={course._id}
                 className="wd-dashboard-course col"
@@ -158,8 +135,12 @@ export default function Dashboard({
             ))}
           </div>
         </div>
-      ) : (
-        <EnrollmentOptions />
+      )}
+      {enrollment && (
+        <EnrollmentOptions
+          addNewCourse={addNewCourse}
+          deleteCourse={deleteCourse}
+        />
       )}
     </div>
   );

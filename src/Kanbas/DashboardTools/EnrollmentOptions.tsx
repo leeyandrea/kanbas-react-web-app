@@ -1,61 +1,76 @@
 import { Link } from "react-router-dom";
 import * as db from "../Database";
 import { useSelector, useDispatch } from "react-redux";
+import { createEnrollment, deleteEnrollment } from "./reducer";
 import * as enrollmentsClient from "./client";
-import { useEffect, useState } from "react";
-import { setEnrollments, addEnrollment, removeEnrollment } from "./reducer";
 
-export default function Enrollments({}: {}) {
+import { useEffect, useState } from "react";
+
+export default function Enrollments({
+  addNewCourse,
+  deleteCourse,
+}: {
+  addNewCourse: () => void;
+  deleteCourse: (course: any) => void;
+}) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
   const dispatch = useDispatch();
   const courses = db.courses;
+  const [enrollments, setEnrollments] = useState(db.enrollments);
   // const [enrollments, setEnrollments] = useState(db.enrollments);
 
-  const checkEnrolled = (courseId: string) => {
+  function checkEnrolled(c: any): boolean {
     return enrollments.some(
-      (enrollment: any) =>
-        enrollment.course === courseId && enrollment.user === currentUser._id
+      (enrollment) =>
+        enrollment.course === c._id && enrollment.user === currentUser._id
     );
-  };
+  }
   const [enrolled, setEnrolled] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const status = courses.reduce((acc, course) => {
-      acc[course._id] = checkEnrolled(course._id);
+      acc[course._id] = checkEnrolled(course);
       return acc;
     }, {} as { [key: string]: boolean });
     setEnrolled(status);
   }, [courses, enrollments]);
 
-  const getEId = (courseId: string) => {
+  function getEId(c: any): string | null {
     const enrollment = enrollments.find(
-      (e: any) => e.user === currentUser._id && e.course === courseId
+      (e) => e.user === currentUser._id && e.course === c._id
     );
-    return enrollment?._id;
-  };
+    return enrollment ? enrollment._id : null;
+  }
 
-  const handleEnroll = async (courseId: string) => {
+  const handleEnroll = async (course: any) => {
     try {
-      const response = await enrollmentsClient.enrollInCourse(
+      const newEnrollment = await enrollmentsClient.enrollInCourse(
         currentUser._id,
-        courseId
+        course._id
       );
-      dispatch(addEnrollment(response));
+      setEnrollments((prev) => [...prev, newEnrollment]);
+      setEnrolled((prev) => ({
+        ...prev,
+        [course._id]: true,
+      }));
     } catch (error) {
-      console.error("Enrollment failed:", error);
+      console.error("Enrollment failed", error);
     }
   };
 
-  const handleUnenroll = async (courseId: string) => {
-    const enrollmentId = getEId(courseId);
+  const handleUnenroll = async (course: any) => {
+    const enrollmentId = getEId(course);
     if (!enrollmentId) return;
 
     try {
       await enrollmentsClient.unenrollFromCourse(enrollmentId);
-      dispatch(removeEnrollment(enrollmentId));
+      setEnrollments((prev) => prev.filter((e) => e._id !== enrollmentId));
+      setEnrolled((prev) => ({
+        ...prev,
+        [course._id]: false,
+      }));
     } catch (error) {
-      console.error("Unenrollment failed:", error);
+      console.error("Unenrollment failed", error);
     }
   };
 
@@ -87,21 +102,19 @@ export default function Enrollments({}: {}) {
                     {course.description}{" "}
                   </p>
 
-                  {checkEnrolled(course._id) ? (
+                  {enrolled[course._id] ? (
                     <button
-                      onClick={() => handleUnenroll(course._id)}
+                      onClick={() => handleUnenroll(course)}
                       className="btn btn-danger"
                     >
-                      {" "}
-                      Unenroll{" "}
+                      Unenroll
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleEnroll(course._id)}
+                      onClick={() => handleEnroll(course)}
                       className="btn btn-primary"
                     >
-                      {" "}
-                      Enroll{" "}
+                      Enroll
                     </button>
                   )}
                 </div>
