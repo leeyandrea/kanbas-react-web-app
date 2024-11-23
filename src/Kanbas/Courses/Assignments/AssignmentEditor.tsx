@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addAssignment, updateAssignment } from "./reducer";
+import { addAssignment, setAssignments, updateAssignment } from "./reducer";
+import * as assignmentsClient from "./client";
 
 export default function AssignmentEditor() {
   const { aid, cid } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
+  const fetchAssignments = async () => {
+    const assignments = await assignmentsClient.findAssignmentsForCourse(
+      cid as string
+    );
+    dispatch(setAssignments(assignments));
+  };
 
   const existingAssignment =
     aid !== "new" ? assignments.find((a: any) => a._id === aid) : null;
@@ -21,21 +29,31 @@ export default function AssignmentEditor() {
     endDate: existingAssignment?.end || "",
   });
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (aid === "new") {
-      dispatch(addAssignment({ ...assignment, course: cid }));
-    } else {
-      dispatch(
-        updateAssignment({
-          _id: aid,
+      const newAssignment = await assignmentsClient.createAssignmentForCourse(
+        cid as string,
+        {
           title: assignment.name,
           description: assignment.description,
           points: assignment.points,
           due: assignment.dueDate,
           available: assignment.startDate,
           end: assignment.endDate,
-        })
+        }
       );
+      dispatch(addAssignment(newAssignment));
+    } else {
+      const updatedAssignment = await assignmentsClient.updateAssignment({
+        _id: aid,
+        title: assignment.name,
+        description: assignment.description,
+        points: assignment.points,
+        due: assignment.dueDate,
+        available: assignment.startDate,
+        end: assignment.endDate,
+      });
+      dispatch(updateAssignment(updatedAssignment));
     }
     navigate(`/Kanbas/Courses/${cid}/Assignments`);
   };

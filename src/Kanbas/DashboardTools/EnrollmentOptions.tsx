@@ -1,43 +1,66 @@
 import { Link } from "react-router-dom";
 import * as db from "../Database";
 import { useSelector, useDispatch } from "react-redux";
-import { createEnrollment, deleteEnrollment } from "./reducer";
-import { create } from "domain";
+import * as enrollmentsClient from "./client";
 import { useEffect, useState } from "react";
+import { addEnrollment, removeEnrollment } from "./reducer";
 
-export default function Enrollments({
-  addNewCourse,
-  deleteCourse,
-}: {
-  addNewCourse: () => void;
-  deleteCourse: (course: any) => void;
+export default function Enrollments({}: {
+  // addNewCourse: () => void;
+  // deleteCourse: (course: any) => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const dispatch = useDispatch();
   const courses = db.courses;
-  const enrollments = db.enrollments;
+  // const [enrollments, setEnrollments] = useState(db.enrollments);
 
-  function checkEnrolled(c: any): boolean {
+  const checkEnrolled = (courseId: string) => {
     return enrollments.some(
-      (enrollment) =>
-        enrollment.course === c._id && enrollment.user === currentUser._id
+      (enrollment: any) =>
+        enrollment.course === courseId && enrollment.user === currentUser._id
     );
-  }
+  };
   const [enrolled, setEnrolled] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const status = courses.reduce((acc, course) => {
-      acc[course._id] = checkEnrolled(course);
+      acc[course._id] = checkEnrolled(course._id);
       return acc;
     }, {} as { [key: string]: boolean });
     setEnrolled(status);
   }, [courses, enrollments]);
 
-  function getEId(c: any): number {
-    enrollments.filter((e) => e.user === currentUser._id && e.course === c._id);
-    const id = enrollments[0]._id;
-    return parseInt(id);
-  }
+  const getEId = (courseId: string) => {
+    const enrollment = enrollments.find(
+      (e: any) => e.user === currentUser._id && e.course === courseId
+    );
+    return enrollment?._id;
+  };
+
+  const handleEnroll = async (courseId: string) => {
+    try {
+      const response = await enrollmentsClient.enrollInCourse(
+        currentUser._id,
+        courseId
+      );
+      dispatch(addEnrollment(response));
+    } catch (error) {
+      console.error("Enrollment failed:", error);
+    }
+  };
+
+  const handleUnenroll = async (courseId: string) => {
+    const enrollmentId = getEId(courseId);
+    if (!enrollmentId) return;
+
+    try {
+      await enrollmentsClient.unenrollFromCourse(enrollmentId);
+      dispatch(removeEnrollment(enrollmentId));
+    } catch (error) {
+      console.error("Unenrollment failed:", error);
+    }
+  };
 
   return (
     <div id="wd-enrollment">
@@ -45,11 +68,17 @@ export default function Enrollments({
         <div className="row row-cols-1 row-cols-md-5 g-4">
           {courses.map((course) => (
             <div
+              key={course._id}
               className="wd-enrollment-course col"
               style={{ width: "300px" }}
             >
               <div className="card rounded-3 overflow-hidden">
-                <img src="/images/reactjs.jpg" width="100%" height={160} />
+                <img
+                  src="/images/reactjs.jpg"
+                  width="100%"
+                  height={160}
+                  alt={course.name}
+                />
                 <div className="card-body">
                   <h5 className="wd-enrollment-course-title card-title">
                     {course.name}{" "}
@@ -61,35 +90,17 @@ export default function Enrollments({
                     {course.description}{" "}
                   </p>
 
-                  {enrolled[course._id] && (
+                  {checkEnrolled(course._id) ? (
                     <button
-                      onClick={() => {
-                        dispatch(deleteEnrollment(getEId(course)));
-                        setEnrolled((prev) => ({
-                          ...prev,
-                          [course._id]: false,
-                        }));
-                      }}
+                      onClick={() => handleUnenroll(course._id)}
                       className="btn btn-danger"
                     >
                       {" "}
                       Unenroll{" "}
                     </button>
-                  )}
-                  {!enrolled[course._id] && (
+                  ) : (
                     <button
-                      onClick={() => {
-                        dispatch(
-                          createEnrollment({
-                            user: currentUser._id,
-                            course: course,
-                          })
-                        );
-                        setEnrolled((prev) => ({
-                          ...prev,
-                          [course._id]: true,
-                        }));
-                      }}
+                      onClick={() => handleEnroll(course._id)}
                       className="btn btn-primary"
                     >
                       {" "}

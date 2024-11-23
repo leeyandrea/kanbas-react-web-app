@@ -1,15 +1,21 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteAssignment } from "./reducer";
+import * as assignmentsClient from "./client";
 
 const DeleteAssignmentDialog = () => {
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     const modal = document.getElementById("wd-delete-assignment-dialog");
     const assignmentId = modal?.getAttribute("data-assignment-id");
     if (assignmentId) {
-      dispatch(deleteAssignment(assignmentId));
+      try {
+        await assignmentsClient.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+      } catch (error) {
+        console.error("Failed to delete assignment:", error);
+      }
     }
   };
 

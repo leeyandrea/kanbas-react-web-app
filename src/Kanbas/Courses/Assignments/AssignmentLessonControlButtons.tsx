@@ -5,11 +5,18 @@ import { FaTrash } from "react-icons/fa";
 
 interface AssignmentLessonControlButtonsProps {
   assignmentId: string;
+  onDelete: () => void;
 }
 
 const AssignmentLessonControlButtons: React.FC<
   AssignmentLessonControlButtonsProps
-> = ({ assignmentId }) => {
+> = ({ assignmentId, onDelete }) => {
+  const handleDelete = () => {
+    const modal = document.getElementById("wd-delete-assignment-dialog");
+    if (modal) {
+      modal.setAttribute("data-assignment-id", assignmentId);
+    }
+  };
   return (
     <div className="float-end ms-auto">
       <GreenCheckmark />
@@ -17,12 +24,7 @@ const AssignmentLessonControlButtons: React.FC<
         className="text-danger me-2 mb-1 cursor-pointer"
         data-bs-toggle="modal"
         data-bs-target="#wd-delete-assignment-dialog"
-        onClick={() => {
-          const modal = document.getElementById("wd-delete-assignment-dialog");
-          if (modal) {
-            modal.setAttribute("data-assignment-id", assignmentId);
-          }
-        }}
+        onClick={handleDelete}
       />
       <IoEllipsisVertical className="fs-4" />
     </div>
