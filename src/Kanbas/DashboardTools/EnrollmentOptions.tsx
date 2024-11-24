@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import * as db from "../Database";
 import { useSelector, useDispatch } from "react-redux";
-import { createEnrollment, deleteEnrollment } from "./reducer";
 import * as enrollmentsClient from "./client";
 
 import { useEffect, useState } from "react";
@@ -17,7 +15,6 @@ export default function Enrollments({
   const dispatch = useDispatch();
   const courses = db.courses;
   const [enrollments, setEnrollments] = useState(db.enrollments);
-  // const [enrollments, setEnrollments] = useState(db.enrollments);
 
   function checkEnrolled(c: any): boolean {
     return enrollments.some(

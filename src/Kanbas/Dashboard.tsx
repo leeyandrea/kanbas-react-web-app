@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import EnrollmentOptions from "./DashboardTools/EnrollmentOptions";
-// import * as db from "./Database";
 
 export default function Dashboard({
   courses,
