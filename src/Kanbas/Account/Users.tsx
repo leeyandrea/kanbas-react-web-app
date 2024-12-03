@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import PeopleTable from "../Courses/Assignments/People/Table";
+import PeopleTable from "../Courses/People/Table";
 import * as client from "./client";
 export default function Users() {
   const [users, setUsers] = useState<any[]>([]);

@@ -5,7 +5,7 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/AssignmentEditor";
 import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
-import PeopleTable from "./Assignments/People/Table";
+import PeopleTable from "./People/Table";
 
 export default function Courses({ courses }: { courses: any[] }) {
   const { cid } = useParams();
