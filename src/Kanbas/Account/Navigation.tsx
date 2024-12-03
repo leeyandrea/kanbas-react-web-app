@@ -4,40 +4,64 @@ export default function AccountNavigation() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const location = useLocation();
   const links = currentUser ? ["Profile"] : ["Signin", "Signup"];
+  const active = (path: string) => (pathname.includes(path) ? "active" : "");
+  const { pathname } = useLocation();
   return (
     <div id="wd-account-navigation" className="wd list-group fs-6 rounded-0">
-      {links.includes("Signin") && (
+      {links.map((link) => (
         <Link
-          to={`/Kanbas/Account/Signin`}
-          className={`list-group-item ${
-            location.pathname === "/Kanbas/Account/Signin"
-              ? "active"
-              : "text-danger"
-          } border-0`}
+          key={link}
+          to={`/Kanbas/Account/${link}`}
+          className={`list-group-item ${active(link)}`}
         >
-          Signin
+          {" "}
+          {link}{" "}
         </Link>
-      )}
-      {links.includes("Signup") && (
+      ))}
+      {currentUser && currentUser.role === "ADMIN" && (
         <Link
-          to={`/Kanbas/Account/Signup`}
-          className={`list-group-item ${
-            location.pathname === "/Kanbas/Account/Signup"
-              ? "active"
-              : "text-danger"
-          } border-0`}
+          to={`/Kanbas/Account/Users`}
+          className={`list-group-item ${active("Users")}`}
         >
-          Signup
-        </Link>
-      )}
-      {links.includes("Profile") && (
-        <Link
-          to={`/Kanbas/Account/Profile`}
-          className="list-group-item text-danger border-0"
-        >
-          Profile
+          {" "}
+          Users{" "}
         </Link>
       )}
     </div>
+
+    // <div id="wd-account-navigation" className="wd list-group fs-6 rounded-0">
+    //   {links.includes("Signin") && (
+    //     <Link
+    //       to={`/Kanbas/Account/Signin`}
+    //       className={`list-group-item ${
+    //         location.pathname === "/Kanbas/Account/Signin"
+    //           ? "active"
+    //           : "text-danger"
+    //       } border-0`}
+    //     >
+    //       Signin
+    //     </Link>
+    //   )}
+    //   {links.includes("Signup") && (
+    //     <Link
+    //       to={`/Kanbas/Account/Signup`}
+    //       className={`list-group-item ${
+    //         location.pathname === "/Kanbas/Account/Signup"
+    //           ? "active"
+    //           : "text-danger"
+    //       } border-0`}
+    //     >
+    //       Signup
+    //     </Link>
+    //   )}
+    //   {links.includes("Profile") && (
+    //     <Link
+    //       to={`/Kanbas/Account/Profile`}
+    //       className="list-group-item text-danger border-0"
+    //     >
+    //       Profile
+    //     </Link>
+    //   )}
+    // </div>
   );
 }
