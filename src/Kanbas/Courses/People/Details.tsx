@@ -98,7 +98,7 @@ export default function PeopleDetails() {
         className="btn btn-secondary float-start float-end me-2 wd-cancel"
       >
         {" "}
-        Cancel{" "}
+        Cancel
       </button>
     </div>
   );
