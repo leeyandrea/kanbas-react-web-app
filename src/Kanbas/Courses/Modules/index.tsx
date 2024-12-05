@@ -35,12 +35,12 @@ export default function Modules() {
     dispatch(addModule(module));
   };
   const fetchModules = async () => {
-    const modules = await coursesClient.findModulesForCourse(cid as string);
+    const modules = await coursesClient.findModulesForCourse(cid || "");
     dispatch(setModules(modules));
   };
   useEffect(() => {
     fetchModules();
-  }, []);
+  }, [cid]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
 
