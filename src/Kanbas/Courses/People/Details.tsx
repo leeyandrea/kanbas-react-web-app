@@ -97,7 +97,6 @@ export default function PeopleDetails() {
         onClick={() => navigate(-1)}
         className="btn btn-secondary float-start float-end me-2 wd-cancel"
       >
-        {" "}
         Cancel
       </button>
     </div>
