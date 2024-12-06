@@ -91,7 +91,7 @@ export default function PeopleDetails() {
         className="btn btn-danger float-end wd-delete"
       >
         {" "}
-        Delete{" "}
+        Delete
       </button>
       <button
         onClick={() => navigate(-1)}
